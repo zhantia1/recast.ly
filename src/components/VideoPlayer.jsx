@@ -1,7 +1,7 @@
 var VideoPlayer = () => (
   <div className="video-player">
     <div className="embed-responsive embed-responsive-16by9">
-      <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" allowFullScreen></iframe>
+      <iframe width="1147" height="645" src="https://www.youtube.com/embed/4UjNV9Fn76U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     <div className="video-player-details">
       <h3>Video Title</h3>
