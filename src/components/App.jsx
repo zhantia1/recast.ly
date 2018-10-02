@@ -24,11 +24,11 @@ class App extends React.Component {
   onHandleClick(selectedVideo) {      
     this.setState({
       currentVideo: selectedVideo
-    });   
+    });
   }
   
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  handleChange(value) {
+    this.setState({value: value});
   }
 
   handleSubmit(event) {
@@ -41,7 +41,7 @@ class App extends React.Component {
   }
   
   componentDidMount() {
-    console.log('this component just mounted');
+    //console.log('this component just mounted');
     
     var options = {};
     options.query = 'cats';
@@ -57,24 +57,33 @@ class App extends React.Component {
     }); 
   }
   
-  
   componentDidUpdate() {
-    console.log('this component did update');
+    //console.log('this component did update');
+    var options = {};
+    options.query = this.state.value;
+    options.max = 5;
+    options.key = YOUTUBE_API_KEY;
     
-    if(this.state.submitClicked){
+    searchYouTube(options, data => {
+      this.setState({
+        videos: data
+      });
+    });
+        
+    if (this.state.submitClicked) {
       var options = {};
       options.query = this.state.value;
       options.max = 6;
       options.key = YOUTUBE_API_KEY;   
       
 
-    searchYouTube(options, data => {
-      this.setState({
-        currentVideo: data[0],
-        videos: data.slice(1)
-      });
+      searchYouTube(options, data => {
+        this.setState({
+          currentVideo: data[0],
+          videos: data.slice(1)
+        });
       
-    });
+      });
     
       this.setState({
         submitClicked: false
@@ -82,25 +91,19 @@ class App extends React.Component {
     }
   }
   
-  
-  
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
             <div>
-              <Search />
-              <form onClick={this.handleSubmit}>
-                <input type="text" value={this.state.value} onChange={this.handleChange} className="search-bar form-control" id="message"/>
-                <input type="submit" className="btn"/>
-              </form>
+              <Search onHandleChange={this.handleChange} onHandleClick={this.handleSubmit} />
             </div>
           </div>
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div> <VideoPlayer video={this.state.currentVideo}/>  </div>
+            <div> <VideoPlayer video={this.state.currentVideo}/> </div>
           </div>
           <div className="col-md-5">
             <div><h5><VideoList onClick={this.onHandleClick} videos={this.state.videos}/> </h5></div>
