@@ -10,19 +10,20 @@ class App extends React.Component {
       videos: exampleVideoData,
       currentVideo: exampleVideoData[0]
     };
+    
+    this.onHandleClick = this.onHandleClick.bind(this);
   }
   
- 
   onHandleClick(selectedVideo) {      
     console.log(selectedVideo); 
-      this.setState({
-        currentVideo: selectedVideo
-      });   
+    this.setState({
+      currentVideo: selectedVideo
+    });   
   }
   
   
   render() {
-      return (
+    return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
@@ -38,10 +39,10 @@ class App extends React.Component {
           </div>
         </div>
       </div>
-      );
+    );
   }
   
-};
+}
 
 
 
