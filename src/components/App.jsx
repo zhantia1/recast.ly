@@ -1,6 +1,6 @@
 import VideoPlayer from './VideoPlayer.js';
 import VideoList from './VideoList.js';
-
+import exampleVideoData from '../data/exampleVideoData.js'
 var App = () => (
   <div>
     <nav className="navbar">
@@ -10,7 +10,7 @@ var App = () => (
     </nav>
     <div className="row">
       <div className="col-md-7">
-        <div> <VideoPlayer />  </div>
+        <div> <VideoPlayer video={exampleVideoData[0]}/>  </div>
       </div>
       <div className="col-md-5">
         <div><h5><VideoList videos={window.fakeVideoData}/> </h5></div>
