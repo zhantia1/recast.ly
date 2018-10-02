@@ -14,8 +14,7 @@ class App extends React.Component {
     this.onHandleClick = this.onHandleClick.bind(this);
   }
   
-  onHandleClick(selectedVideo) {      
-    console.log(selectedVideo); 
+  onHandleClick(selectedVideo) {       
     this.setState({
       currentVideo: selectedVideo
     });   

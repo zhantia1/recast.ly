@@ -34,7 +34,7 @@ body {
 .media-object {
   height:90px;
   width: 120px;
-  
+  cursor: pointer;
 }
 
 .search-bar .btn:hover {
@@ -103,4 +103,5 @@ h5 {
   .video-player {
     margin-right: 20px;
   }
+  
 }
