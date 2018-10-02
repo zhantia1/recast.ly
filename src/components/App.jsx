@@ -16,6 +16,7 @@ class App extends React.Component {
       submitClicked: false
     };
     
+    this.findVideos = _.debounce(this.findVideos,500);
     this.onHandleClick = this.onHandleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,6 +26,14 @@ class App extends React.Component {
     this.setState({
       currentVideo: selectedVideo
     });
+  }
+  
+  findVideos(options) {
+    searchYouTube(options, data => {
+      this.setState({
+        videos: data
+      });
+    });  
   }
   
   handleChange(value) {
@@ -64,11 +73,7 @@ class App extends React.Component {
     options.max = 5;
     options.key = YOUTUBE_API_KEY;
     
-    searchYouTube(options, data => {
-      this.setState({
-        videos: data
-      });
-    });
+    this.findVideos(options);
         
     if (this.state.submitClicked) {
       var options = {};
